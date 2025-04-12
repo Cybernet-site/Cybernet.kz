@@ -3,20 +3,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ремонт и Услуги в Казахстане</title>
+  <title>Ремонт бытовых приборов в Казахстане</title>
   <style>
+    /* Общие стили для страницы */
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Arial', sans-serif;
       margin: 0;
       padding: 0;
       background-color: #f4f4f4;
     }
+
+    /* Стили для шапки */
     header {
       background-color: #007bff;
       color: white;
       padding: 20px;
       text-align: center;
     }
+
+    /* Стили для меню навигации */
+    nav {
+      background-color: #333;
+      overflow: hidden;
+    }
+    
+    nav a {
+      float: left;
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 20px;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      background-color: #575757;
+    }
+
+    /* Стили для кнопки "Оставить заявку" */
+    .apply-button {
+      background-color: #28a745;
+      color: white;
+      padding: 12px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .apply-button:hover {
+      background-color: #218838;
+    }
+
+    /* Стили для контента */
+    .content-section {
+      padding: 20px;
+      margin: 20px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
     .services {
       display: flex;
       justify-content: center;
@@ -24,6 +72,7 @@
       margin: 20px;
       flex-wrap: wrap;
     }
+
     .service-card {
       background-color: white;
       padding: 20px;
@@ -32,6 +81,8 @@
       text-align: center;
       border-radius: 10px;
     }
+
+    /* Стили для формы */
     .contact-form {
       margin: 20px auto;
       max-width: 500px;
@@ -40,6 +91,7 @@
       border-radius: 10px;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     }
+
     input[type="text"], input[type="tel"], textarea {
       width: 100%;
       padding: 10px;
@@ -48,6 +100,7 @@
       border-radius: 5px;
       font-size: 16px;
     }
+
     input[type="submit"] {
       background-color: #25D366;
       color: white;
@@ -57,6 +110,7 @@
       border-radius: 5px;
       cursor: pointer;
     }
+
     footer {
       background-color: #333;
       color: white;
@@ -64,48 +118,57 @@
       text-align: center;
       margin-top: 20px;
     }
+
+    /* Стили для секций контента */
+    .section-title {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
   </style>
 
   <script>
-    function sendToWhatsApp() {
-      let name = document.getElementById("name").value;
-      let phone = document.getElementById("phone").value;  // Получаем номер телефона
-      let message = document.getElementById("message").value;
-      let whatsappPhone = "77086136243";
+    // Функция для отправки сообщения в WhatsApp
+function sendToWhatsApp() {
+  let name = document.getElementById("name").value; // Имя клиента
+  let message = document.getElementById("message").value; // Описание проблемы
+  let whatsappPhone = "77086136243";
 
-      let fullMessage = `Здравствуйте! Меня зовут ${name}. Мой номер: ${phone}. ${message}`;
-      let url = `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(fullMessage)}`;
-      window.open(url, '_blank');
+  // Формируем сообщение без номера телефона
+  let fullMessage = `Здравствуйте!\nМеня зовут ${name}.\nОписание проблемы: ${message}.\n\nС уважением, ваш клиент.`;
+  
+  // Формируем URL для отправки сообщения в WhatsApp
+  let url = `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(fullMessage)}`;
+  
+  // Открываем ссылку в новой вкладке
+  window.open(url, '_blank');
+}
+
+    // Функция для прокрутки страницы к секции "Контакты"
+    function scrollToContact() {
+      const contactSection = document.getElementById("contact");
+      contactSection.scrollIntoView({ behavior: "smooth" });
     }
   </script>
 </head>
 <body>
 
+  <!-- Навигация -->
+  <nav>
+    <a href="#about">О нас</a>
+    <a href="#how-we-work">Как мы работаем</a>
+    <a href="#contact">Контакты</a>
+  </nav>
+
+  <!-- Шапка сайта -->
   <header>
-    <h1>Ремонт и Услуги в Казахстане</h1>
-    <p>Профессиональный ремонт бытовой техники с гарантией</p>
+    <h1>Ремонт бытовых приборов в Казахстане</h1>
+    <p>Профессиональный ремонт бытовых приборов с гарантией</p>
+
+    <!-- Кнопка "Оставить заявку" -->
+    <button class="apply-button" onclick="scrollToContact()">Оставить заявку</button>
   </header>
 
-  <section class="services">
-    <div class="service-card">
-      <h3>Ремонт техники</h3>
-      <p>Стиральные машины, холодильники и многое другое — быстро и качественно.</p>
-    </div>
-  </section>
-
-  <section class="contact-form">
-    <h2>Оставьте заявку</h2>
-    <form onsubmit="event.preventDefault(); sendToWhatsApp();">
-      <input type="text" id="name" placeholder="Ваше имя" required>
-      <input type="tel" id="phone" placeholder="Ваш номер телефона" required>
-      <textarea id="message" placeholder="Опишите проблему" rows="4" required></textarea>
-      <input type="submit" value="Отправить в WhatsApp">
-    </form>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 Ремонт в Казахстане | Все права защищены</p>
-  </footer>
-
-</body>
-</html>
+  <!-- Секция "О нас" -->
+  <section id="about" class="content-section">
+    <h2 class
