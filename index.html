@@ -1,97 +1,111 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ремонт и Услуги в Казахстане</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        header {
-            background-color: #007bff;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        .services {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 20px;
-            flex-wrap: wrap;
-        }
-        .service-card {
-            background-color: white;
-            padding: 20px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            width: 200px;
-            text-align: center;
-        }
-        footer {
-            background-color: #333;
-            color: white;
-            padding: 10px;
-            text-align: center;
-        }
-        .contact-form {
-            margin: 20px auto;
-            max-width: 500px;
-            background-color: white;
-            padding: 20px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        input[type="text"], input[type="email"], textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        input[type="submit"] {
-            background-color: #28a745;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ремонт и Услуги в Казахстане</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    header {
+      background-color: #007bff;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .services {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 20px;
+      flex-wrap: wrap;
+    }
+    .service-card {
+      background-color: white;
+      padding: 20px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      width: 250px;
+      text-align: center;
+      border-radius: 10px;
+    }
+    .contact-form {
+      margin: 20px auto;
+      max-width: 500px;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    input[type="text"], textarea, input[type="tel"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    input[type="submit"] {
+      background-color: #25D366;
+      color: white;
+      padding: 12px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    footer {
+      background-color: #333;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      margin-top: 20px;
+    }
+  </style>
+
+  <script>
+    function sendToWhatsApp() {
+      let name = document.getElementById("name").value;
+      let phone = document.getElementById("phone").value;  // Получаем номер телефона
+      let message = document.getElementById("message").value;
+      let whatsappPhone = "77086136243";
+
+      let fullMessage = `Здравствуйте! Меня зовут ${name}. Мой номер: ${phone}. ${message}`;
+      let url = `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(fullMessage)}`;
+      window.open(url, '_blank');
+    }
+  </script>
 </head>
 <body>
 
-<header>
+  <header>
     <h1>Ремонт и Услуги в Казахстане</h1>
-    <p>Быстро, качественно и с гарантией!</p>
-</header>
+    <p>Профессиональный ремонт бытовой техники с гарантией</p>
+  </header>
 
-<section class="services">
+  <section class="services">
     <div class="service-card">
-        <h3>Ремонт техники</h3>
-        <p>Мы ремонтируем стиральные машины, холодильники и другую бытовую технику.</p>
+      <h3>Ремонт техники</h3>
+      <p>Стиральные машины, холодильники и многое другое — быстро и качественно.</p>
     </div>
-    <div class="service-card">
-        <h3>Обслуживание</h3>
-        <p>Регулярное обслуживание и профилактика вашей техники.</p>
-    </div>
-</section>
+  </section>
 
-<section class="contact-form">
-    <h2>Оставьте заявку на ремонт</h2>
-    <form action="#" method="POST">
-        <input type="text" name="name" placeholder="Ваше имя" required>
-        <input type="email" name="email" placeholder="Ваш email" required>
-        <textarea name="message" placeholder="Опишите проблему" rows="4" required></textarea>
-        <input type="submit" value="Отправить заявку">
+  <section class="contact-form">
+    <h2>Оставьте заявку</h2>
+    <form onsubmit="event.preventDefault(); sendToWhatsApp();">
+      <input type="text" id="name" placeholder="Ваше имя" required>
+      <input type="tel" id="phone" placeholder="Ваш номер телефона" required>
+      <textarea id="message" placeholder="Опишите проблему" rows="4" required></textarea>
+      <input type="submit" value="Отправить в WhatsApp">
     </form>
-</section>
+  </section>
 
-<footer>
-    <p>&copy; 2025 Ремонт и Услуги в Казахстане | Телефон: +7 (708) 613-62-43</p>
-</footer>
+  <footer>
+    <p>&copy; 2025 Ремонт в Казахстане | Все права защищены</p>
+  </footer>
 
 </body>
 </html>
